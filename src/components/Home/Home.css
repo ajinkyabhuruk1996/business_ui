@@ -1,0 +1,22 @@
+.imageAndWeatherCardContainer{
+    display: flex;
+    flex-direction: row;
+}
+
+.imageCarouselContainer {
+    margin-right: 1%;
+    width: 100%;
+}
+
+@media (max-width: 1199px) {
+    .imageAndWeatherCardContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .imageCarouselContainer {
+        margin-right: 0%;
+        /* width: 100%; */
+    }
+}

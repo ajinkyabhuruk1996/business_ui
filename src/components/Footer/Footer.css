@@ -1,0 +1,11 @@
+.FooterStyle {
+    background-color: #eee;
+    text-align: center;
+    padding: 0.1em;
+    font-size: 1rem;
+    margin-top: 2%;
+}
+
+.FooterStyle>p {
+    margin-top: 1rem;
+}

@@ -1,0 +1,42 @@
+.policiesContainer{
+    margin-top: 7rem;
+    margin-bottom: 5rem;
+}
+
+.policiesContainer>h4{
+    text-align: center;
+    margin-bottom: 5%;
+    text-decoration: underline;
+    color: #014421;
+}
+
+li>h5{
+    font-weight: 700;
+    color: #014421;
+}
+
+li {
+    font-size: large;
+    /* color: #014421; */
+}
+
+li>p{
+    color: black;
+    font-size: 1.2rem;
+    word-spacing: 2px;
+}
+
+@media (max-width: 992px) {
+    ul{
+        padding-left: 0ch;
+        padding-right: 0ch;
+    }
+    li>p{
+        color: black;
+        font-size: medium;
+    }
+    li {
+        list-style-type: none;
+        /* color: #014421; */
+    }
+}

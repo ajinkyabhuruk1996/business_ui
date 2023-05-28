@@ -1,0 +1,14 @@
+.planAheadContainer{
+    margin-top: 2%;
+    border: 1px solid black;
+    padding: 2%;
+}
+
+.planAheadContainer>li{
+    font-size: 1rem;
+}
+
+.planAheadContainer>p{
+    word-spacing: 2px;
+    font-size: 1rem;
+}

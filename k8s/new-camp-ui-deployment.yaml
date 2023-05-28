@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: new-camp-ui
+  name: new-camp-ui-web
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: new-camp-ui
+      tier: web
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: new-camp-ui
+        tier: web
+    spec:
+      containers:
+        - image: gcr.io/all-projects-292200/github.com/sanskruti29/campui
+          imagePullPolicy: IfNotPresent
+          name: new-camp-ui-app
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 200m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 24Mi

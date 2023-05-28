@@ -1,0 +1,98 @@
+.quoteContainer{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    background-color: #DCDCDC	; 
+}
+
+.quoteContainer:hover {
+    animation-play-state: running;
+}
+
+/* @media (min-width: 992px) */
+@media (max-width: 991px) {
+    .quoteContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .subQuote{
+        margin-top: 1rem;
+    }
+}
+
+.subQuote {
+    box-shadow: 1px 2px silver;
+    margin: 1rem;
+    line-height: 1.5;
+    /* width: 30rem; */
+}
+
+.subQuote:hover {
+    transition: all 0.2s ease-out;
+    box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
+    border: 1px solid #00838d;
+}
+
+.subQuote > form{
+    align-self: center;
+}
+
+.quoteButton{
+    display: block;
+    padding: 0.6rem 1.25rem;
+    background-color: #006241;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.quoteButton:hover {
+    background-color:#014421 ;
+}
+
+.quoteButton:focus {
+    background-color:#014421;
+    outline: none;
+}
+
+.period{
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.duration{
+    font-weight: 500;
+    font-size: 1.1rem;
+    /*padding: 1rem;*/
+}
+
+.guestCount{
+    padding: .5rem 0;
+    margin: .5rem 0;
+    font-size: 1.5rem;
+    letter-spacing: .1rem;
+    font-weight: 700;
+    /* opacity: .7; */
+    color:black;
+}
+
+.cardTitle{
+    text-align:center;
+    color: #014421;
+}
+
+.price{
+    font-size: 1.5rem;
+    font-style: oblique;
+}
+
+.priceLinethrough {
+    text-decoration: line-through;
+    font-size: 1.3rem;
+}

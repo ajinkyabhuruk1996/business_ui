@@ -1,0 +1,20 @@
+.recommendationContainer{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    border: 1px solid black;
+}
+
+.cardStyle{
+    margin: 2vw;
+}
+
+.cardStyle:hover{
+    border: 1px solid blue;
+}
+
+@media (max-width: 992px) {
+    .recommendationContainer{
+       flex-direction: column;
+    }
+}

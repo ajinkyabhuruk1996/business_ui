@@ -1,0 +1,21 @@
+.aboutusContainer{
+    margin-top: 10%;
+    text-align:center;
+}
+  
+.aboutusContainer>h4 {
+    margin-bottom: 2%;
+    color: #014421;
+    text-decoration-line: underline;
+}
+
+.aboutusContainer>p{
+    font-size: 1.2rem;
+    word-spacing: 2px;
+}
+
+@media (max-width: 1199px) {
+    .aboutusContainer>p{
+        font-size: large;
+    }
+}

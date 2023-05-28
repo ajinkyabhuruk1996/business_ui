@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: new-camp-ui-web
+  labels:
+    app: new-camp-ui
+spec:
+  selector:
+    matchLabels:
+      app: new-camp-ui
+      tier: web
+  template:
+    metadata:
+      labels:
+        app: new-camp-ui
+        tier: web
+    spec:
+      containers:
+      - name: new-camp-ui-app
+        image: gcr.io/all-projects-292200/new-camp-ui:v9
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "0.05"
+            memory: "24Mi"
+          limits:
+            cpu: "0.2"  
+            memory: "128Mi" 
+
+
+

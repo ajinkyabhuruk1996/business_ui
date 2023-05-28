@@ -1,0 +1,48 @@
+.headerContainer{
+    margin-bottom: 7%;
+}
+
+.brandName {
+    margin-left: 5%;
+    font-weight: 800;
+    font-size: 1.7rem;
+    text-decoration: none;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, sans-serif;
+}
+
+.navBarStyle {
+    /* US Forest Green: #014421;  */
+    /* Russian Green: #679267 */
+    /* Spanish Green: #006241*/
+    background-color:#5281b7; 
+    padding: none;
+}
+
+.link{
+    text-decoration: none;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #26664c;
+}
+  
+.link:hover{
+    border-bottom: 2px solid white;
+}
+
+.navOptions {
+    margin-right: 5%;
+}
+
+@media (max-width: 992px) {
+    .headerContainer{
+        margin-bottom: 6rem;
+    }
+
+    .brandName {
+        margin-left: 0%;
+        font-size: 1.5rem;
+    }
+
+    .navOptions {
+        margin-right: 0%;
+    }
+}

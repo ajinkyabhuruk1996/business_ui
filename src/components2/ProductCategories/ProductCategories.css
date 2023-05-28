@@ -1,0 +1,18 @@
+
+.prodCategoriesImgContainer {
+    margin-right: 1%;
+    width: 100%;
+}
+
+@media (max-width: 1199px) {
+    .imageAndWeatherCardContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .prodCategoriesImgContainer {
+        margin-right: 0%;
+        /* width: 100%; */
+    }
+}

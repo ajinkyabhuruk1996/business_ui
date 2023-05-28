@@ -1,0 +1,20 @@
+.locationCard{
+    margin-top: 2%;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    box-shadow: 1px 2px silver;
+} 
+
+.iframe{
+    width: 100%;
+    height: 30rem;
+}
+
+@media (max-width: 992px) {
+    .locationCard {
+        margin-top: 5%;
+        width: 100%;
+        height: 100%;
+    }
+}
