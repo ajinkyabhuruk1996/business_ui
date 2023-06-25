@@ -13,7 +13,10 @@ import Policies from './components/Guidelines/Policies.js'
 import Planning from './components/PlanningTrip/PlanningTrip.js'
 import Weather from './components/Weather/Weather.js'
 import Booking from './components/Forms/Booking/Booking.js'
+import SolarPanelListing  from './components2/ProductListing/SolarPanelListing.js'
+import SolarHeatersListing  from './components2/ProductListing/SolarHeatersListing.js'
 import './App.css';
+import ProductListing from './components2/ProductListing/ProductListing.js';
 
 export default class App extends Component {
   render(){
@@ -31,6 +34,9 @@ export default class App extends Component {
               <Route path="/planning" element={<Planning/>}></Route>
               <Route path="/weather" element={<Weather/>}></Route>
               <Route path="/booking" element={<Booking/>}></Route>
+              <Route exact path="/productlist/solarpanel" element={<SolarPanelListing/>}></Route>
+              <Route exact path="/productlist/solarheater" element={<SolarHeatersListing/>}></Route>
+              <Route path="/productlist/*" element={<ProductListing/>}></Route>
               <Route path="/404" element={<PageNotFound404/>}></Route> 
               <Route path="*" element={<PageNotFound404/>}></Route>
               {/* <Navigate to="/404" /> */}

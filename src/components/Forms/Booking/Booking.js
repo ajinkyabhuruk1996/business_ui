@@ -131,6 +131,7 @@ export default class BookingForm extends React.Component {
                     
                         <div className="formContainer">
                             <div className="formStyle" style={{"marginTop": "2rem"}}>
+                                logout
                             <Logout/>
                                 <Form method="POST">
                                     <SelectNumber 
