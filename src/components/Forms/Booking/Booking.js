@@ -44,7 +44,6 @@ export default class BookingForm extends React.Component {
                         <AlertTitle><strong>Your booking request has been submitted!</strong></AlertTitle>
                         <label>{this.state.message}</label>
                     </Alert>
-                    <Logout/>
                 </div>
             );
         } else if(this.state.message != null && this.state.booking === false){
@@ -131,8 +130,6 @@ export default class BookingForm extends React.Component {
                     
                         <div className="formContainer">
                             <div className="formStyle" style={{"marginTop": "2rem"}}>
-                                logout
-                            <Logout/>
                                 <Form method="POST">
                                     <SelectNumber 
                                         label="Adults:"

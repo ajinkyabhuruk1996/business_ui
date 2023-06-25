@@ -14,7 +14,8 @@ export default class LoginForm extends React.Component {
         this.state={
             data: null,
             loggedIn: false,
-            message : null
+            message : null,
+            isCustomer: false
         }
     }
 
@@ -32,13 +33,20 @@ export default class LoginForm extends React.Component {
     }
 
     render(){
-        if(this.state.message != null && this.state.loggedIn === true){
+        if(this.state.message != null && this.state.loggedIn === true && this.state.isCustomer === true){
             return(
                 <div>
                     <Navigate to="/booking" />
                 </div>
             );
-        } else {
+        } if(this.state.message != null && this.state.loggedIn === true && !this.state.isCustomer){
+            return(
+                <div>
+                    <Navigate to="/adminportal" />
+                </div>
+            );
+        } 
+        else {
             return(
                 <div>
                     <Formik
@@ -73,9 +81,14 @@ export default class LoginForm extends React.Component {
                             .then(returnedObj => {
                                 var strMsg = returnedObj.returnedBody.msg;
                                 var userCapabilites = returnedObj.returnedBody.userCapabilites;
+                                var roles = returnedObj.returnedBody.roles;
                                 sessionStorage.setItem("userCapabilites", JSON.stringify(userCapabilites));
+                                sessionStorage.setItem("userloggedIn", true);
+                                sessionStorage.setItem("roles", JSON.stringify(roles));
+                                // debugger;
+                                const isCustomer=  roles.indexOf('isCustomer') === -1 ?  false : true;
                                 if (returnedObj.status === 200){ //success
-                                    this.setState({message:strMsg, loggedIn: true})
+                                    this.setState({message:strMsg, loggedIn: true, isCustomer: isCustomer});
                                 } else { //failure
                                     this.setState({message:strMsg, loggedIn: false})
                                 }
