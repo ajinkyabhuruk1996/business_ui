@@ -72,6 +72,8 @@ export default class LoginForm extends React.Component {
                                 .then(data => ({status: response.status, returnedBody: data})))                 
                             .then(returnedObj => {
                                 var strMsg = returnedObj.returnedBody.msg;
+                                var userCapabilites = returnedObj.returnedBody.userCapabilites;
+                                sessionStorage.setItem("userCapabilites", JSON.stringify(userCapabilites));
                                 if (returnedObj.status === 200){ //success
                                     this.setState({message:strMsg, loggedIn: true})
                                 } else { //failure
