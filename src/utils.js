@@ -12,12 +12,11 @@ export const isLocalhost = Boolean(
 
 
 export const getSessionValBySessionKey = (sessionKey) => {
-  let sesssionData;
   const sessionVal = sessionStorage.getItem(sessionKey) ? sessionStorage.getItem(sessionKey) : '';
   return sessionVal;
 }
 
-export const isAuthorizedToPerform = (area,accessTo) => {
+export const isAuthorizedToPerform = (area, accessTo) => {
   if(!sessionStorage.getItem("userCapabilites")){
     sessionStorage.clear();
     //ToDo: this clears session of userCapabilites comes as empty in session and should log out user
