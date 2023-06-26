@@ -1,5 +1,5 @@
-import React, { Component, useSelector, Fragment } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate ,  } from 'react-router-dom'
+import React, { Fragment } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import 'weather-icons/css/weather-icons.css'
 
 import Header from './components/Header/Header.js'
@@ -59,7 +59,14 @@ const App = () => {
             <Route path="/policies" element={<Policies />}></Route>
             <Route path="/planning" element={<Planning />}></Route>
             <Route path="/weather" element={<Weather />}></Route>
-            <Route path="/booking" element={<Booking />} validateAcesss={"hasAccessToBooking"}></Route>
+            <Route
+              exact path='/booking'
+              element={
+                <Protected component={Booking}
+                area={"enquiry"}
+                accessTo={"hasAccessToBooking"}
+              />} 
+            />
             <Route
               exact path='/adminportal'
               element={
@@ -83,44 +90,3 @@ const App = () => {
 }
 
 export default App;
-
-
-// {/* <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <p>
-//             Edit <code>src/App.js</code> and save to reload.
-//           </p>
-//           <a
-//             className="App-link"
-//             href="https://reactjs.org"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Learn React
-//           </a>
-//         </header> */}
-// class App extends Component{
-//   render(){
-//     return(
-//       <div className="page-container">
-        // <div className="content-wrap">
-        //   <Router>
-        //     <Header/>
-        //     <Switch>
-        //       <Route exact path="/" component={Home}></Route>
-        //       <Route exact path="/signup" component={SignUpForm}></Route>
-        //       <Route exact path="/login" component={LoginForm}></Route>
-        //       <Route exact path="/addrestaurant" component={AddRestaurantPage}></Route>
-        //       <Route exact path="/aboutus" component={AboutUs}></Route>
-        //       <Route exact path="/rating" component={StarRating}></Route>
-        //       <Route exact path="/404" component={NotFoundPage}></Route>
-        //       <Redirect to="/404" />
-        //     </Switch>
-        //   </Router>
-        // </div>
-        // <Footer/>
-//       </div>
-//     );
-//   }
-// }
-// export default App;

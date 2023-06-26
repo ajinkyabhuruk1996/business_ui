@@ -37,6 +37,17 @@ const Header = ()=>{
         }
     }
 
+    const customerButtons = () => {
+        const hasAccessToBooking = JSON.parse(sessionStorage.getItem("userCapabilites"))?.enquiry?.hasAccessToBooking;
+        if (hasAccessToBooking === true) {
+            return(
+                <>
+                    <Nav.Link className="link" active="true" href="/booking">Booking</Nav.Link>
+                </>
+            )
+        }
+    }
+
     return(
         <div className="headerContainer">
             <Navbar className= "navBarStyle navbar" variant="dark" expand="lg" fixed="top">
@@ -58,6 +69,7 @@ const Header = ()=>{
                         <Nav.Link className="link" active="true" href="/policies">Policies</Nav.Link> */}
                         {/* <Nav.Link className="link" active="true" href="/signup">Sign Up</Nav.Link> 
                         <Nav.Link className="link" active="true" href="/login">Login</Nav.Link> */}
+                        {customerButtons()}
                         {adminPortalButtons()}
                         {authButton()}
                         {/* <Nav.Link className="link" active="true" href="/booking">Booking</Nav.Link> */}
