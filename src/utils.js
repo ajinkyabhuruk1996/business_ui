@@ -9,3 +9,16 @@ export const isLocalhost = Boolean(
         /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
       )
 );
+
+
+export const getSessionValBySessionKey = (sessionKey) => {
+  let sesssionData;
+  const sessionVal = sessionStorage.getItem(sessionKey) ? sessionStorage.getItem(sessionKey) : '';
+  return sessionVal;
+}
+
+export const isAuthorizedToPerform = (area,accessTo) => {
+  const sessionVal = sessionStorage.getItem("userCapabilites") ? sessionStorage.getItem("userCapabilites") : '';
+  const canDo = sessionVal ? JSON.parse(sessionVal)?.[area]?.[accessTo] : null;
+  return canDo;
+}

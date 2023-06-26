@@ -79,20 +79,24 @@ export default class LoginForm extends React.Component {
                             .then(response => response.json()
                                 .then(data => ({status: response.status, returnedBody: data})))                 
                             .then(returnedObj => {
-                                var strMsg = returnedObj.returnedBody.msg;
-                                var userCapabilites = returnedObj.returnedBody.userCapabilites;
-                                var roles = returnedObj.returnedBody.roles;
+                                var strMsg = returnedObj?.returnedBody?.msg;
+                                var userCapabilites = returnedObj?.returnedBody?.userCapabilites;
+                                var roles = returnedObj?.returnedBody?.roles;
+                                const isCustomer= roles && roles.indexOf('isCustomer') === -1 ?  false : true;
+                                if (returnedObj.status === 401){ // failure
+                                    this.setState({message:returnedObj.returnedBody.msg, loggedIn: false});
+                                } else if (returnedObj.status === 200){ //success
+                                    this.setState({message:strMsg, loggedIn: true, isCustomer: isCustomer});
+                                } else { // failure
+                                    this.setState({message:strMsg, loggedIn: false})
+                                }
+                                
                                 sessionStorage.setItem("userCapabilites", JSON.stringify(userCapabilites));
                                 sessionStorage.setItem("userloggedIn", true);
                                 sessionStorage.setItem("roles", JSON.stringify(roles));
-                                // debugger;
-                                const isCustomer=  roles.indexOf('isCustomer') === -1 ?  false : true;
-                                if (returnedObj.status === 200){ //success
-                                    this.setState({message:strMsg, loggedIn: true, isCustomer: isCustomer});
-                                } else { //failure
-                                    this.setState({message:strMsg, loggedIn: false})
-                                }
-                            })
+                            }).catch(err => {
+                                this.setState({message:`Error Code:ERR01 User login:  ${err.message}`, loggedIn: false})
+                            });
                             setSubmitting(false);         
                         }} 
                     >

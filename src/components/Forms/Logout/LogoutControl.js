@@ -1,7 +1,7 @@
 import { API_ROOT } from "../../AppConfig/app-config";
 
-export const logoutFunction = (event) => {
-    event.preventDefault();
+export const logoutFunction = () => {
+        // event.preventDefault();
         // const formData = new FormData(event.target);
         // var object = {};
         // formData.forEach(function(value, key){

@@ -17,17 +17,17 @@ import SolarPanelListing from './components/Products/ProductListing/SolarPanelLi
 import SolarHeatersListing from './components/Products/ProductListing/SolarHeatersListing.js'
 import ProductListing from './components/Products/ProductListing/ProductListing.js';
 import AdminPortalHomePage from './components/AdminPortal/AdminPortal/AdminPortalHomePage.js';
-
+import CreateSubUserForm from './components/Forms/SignUp/createSubUserForm.js';
+import { isAuthorizedToPerform } from './utils.js';
 import './App.css';
 
 
 const Protected = ({ component: Component, ...routeProps }) => {
   const { loading, isAuthenticated, user, area, accessTo } = routeProps
-  const isAdmin =true;
-  
-  const hasAccess= JSON.parse(sessionStorage.getItem("userCapabilites"))?.[area]?.[accessTo];
-  // JSON.parse(sessionStorage.getItem("userCapabilites"))?.["adminPortal"]?.["hasAccessToAdminPortal"]
+  const isAdmin = true;
 
+  const hasAccess = isAuthorizedToPerform( area, accessTo);
+  
   if (!loading && !hasAccess) {
     return <Navigate to="/login" />;
   }
@@ -63,17 +63,25 @@ const App = () => {
               exact path='/booking'
               element={
                 <Protected component={Booking}
-                area={"enquiry"}
-                accessTo={"hasAccessToBooking"}
-              />} 
+                  area={"enquiry"}
+                  accessTo={"hasAccessToBooking"}
+                />}
             />
             <Route
               exact path='/adminportal'
               element={
                 <Protected component={AdminPortalHomePage}
-                area={"adminPortal"}
-                accessTo={"hasAccessToAdminPortal"}
-              />} 
+                  area={"adminPortal"}
+                  accessTo={"hasAccessToAdminPortal"}
+                />}
+            />
+            <Route
+              exact path='/adduser'
+              element={
+                <Protected component={CreateSubUserForm}
+                  area={"user"}
+                  accessTo={"canAddNewUser"}
+                />}
             />
             <Route exact path="/productlist/solarpanel" element={<SolarPanelListing />}></Route>
             <Route exact path="/productlist/solarheater" element={<SolarHeatersListing />}></Route>
