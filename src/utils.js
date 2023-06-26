@@ -18,6 +18,11 @@ export const getSessionValBySessionKey = (sessionKey) => {
 }
 
 export const isAuthorizedToPerform = (area,accessTo) => {
+  if(!sessionStorage.getItem("userCapabilites")){
+    sessionStorage.clear();
+    //ToDo: this clears session of userCapabilites comes as empty in session and should log out user
+    console.log('clearing session value when session has empty values , fixed bug ')
+  }
   const sessionVal = sessionStorage.getItem("userCapabilites") ? sessionStorage.getItem("userCapabilites") : '';
   const canDo = sessionVal ? JSON.parse(sessionVal)?.[area]?.[accessTo] : null;
   return canDo;
