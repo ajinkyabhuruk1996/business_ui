@@ -50,6 +50,7 @@ export default class signUpForm extends React.Component{
               email: "",
               password: "",
               roles: [],
+              organizationName: 'testOrg'
             }}
             validationSchema={Yup.object({
               firstName: Yup.string()

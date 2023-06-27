@@ -59,6 +59,7 @@ export default class CreateSubUserForm extends React.Component {
               // isWebSiteAdmin: false,
               // isDataAdmin: false,
               roles: [],
+              organizationName: ''
             }}
             validationSchema={Yup.object({
               firstName: Yup.string()
@@ -138,6 +139,7 @@ export default class CreateSubUserForm extends React.Component {
                       <Field type="checkbox" name="roles" value="isWebSiteAdmin" disabled={!canAddWebSiteAdmin} />
                       &nbsp; Web site admin
                     </label>
+                    <br/>
                     <label>
                       <Field type="checkbox" name="roles" value="isDataAdmin" disabled={!canAddWebSiteAdmin} />
                       &nbsp; Data admin
