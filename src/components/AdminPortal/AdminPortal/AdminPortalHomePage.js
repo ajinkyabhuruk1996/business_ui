@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
@@ -10,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
+import Home from '@mui/icons-material/Home';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
@@ -18,6 +20,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { useNavigate } from 'react-router-dom';
+import { isAuthorizedToPerform } from '../../../utils.js';
 
 const drawerWidth = 240;
 
@@ -88,9 +92,14 @@ const DrawerHeader = styled('div')(({ theme }) => ({
     justifyContent: 'flex-end',
 }));
 
+
+// ['All mail', 'Trash', 'Spam'].
+
+
 const AdminPortalHomePage = () => {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const navigate = useNavigate();
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -100,11 +109,32 @@ const AdminPortalHomePage = () => {
         setOpen(false);
     };
 
+    const navigateToHome = () => {
+        navigate('/')
+    };
+
+    const canAddNewUser = isAuthorizedToPerform("user", "canAddNewUser");
+
+    const menuOptions2 = [
+        // { menuLabel: 'Another Demo', routePath: 'demomenu2' }
+        // { menuLabel: 'Starred', routePath: 'starred' },
+        // { menuLabel: 'Send email', routePath: 'sendemail'},
+        // { menuLabel: 'Drafts', routePath: 'drafts'}
+    ]
+
+    const menuOptions1 = [
+        { menuLabel: 'Add User', routePath: 'adduser', disabled: !canAddNewUser }
+        // { menuLabel: 'Starred', routePath: 'starred' },
+        // { menuLabel: 'Send email', routePath: 'sendemail'},
+        // { menuLabel: 'Drafts', routePath: 'drafts'}
+    ]
+
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar position="fixed" open={open}>
-                <Toolbar>
+                <Toolbar sx={{ justifyContent: "space-between", height: '83px' }}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -116,9 +146,25 @@ const AdminPortalHomePage = () => {
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
                         Admin Portal
+
                     </Typography>
+                    <Box sx={{ display: 'flex' }}>
+
+                        <IconButton
+                            color="inherit"
+                            aria-label="Home"
+                            onClick={navigateToHome}
+                            edge="start"
+                            sx={{ mr: 2 }}
+                        >
+
+                            <Home />
+
+
+                        </IconButton>
+
+                    </Box>
                 </Toolbar>
-                 {/* Render Admin Portal other pages here with routing */}
             </AppBar>
             <Drawer
                 sx={{
@@ -140,26 +186,28 @@ const AdminPortalHomePage = () => {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem key={text} disablePadding>
+                    {menuOptions1.map((item, index) => (
+                        <ListItem key={item.menuLabel} disablePadding className={item.disabled ? 'disabled-link-li' : ''}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                                 </ListItemIcon>
-                                <ListItemText primary={text} />
+                                <Link className={item.disabled ? 'disabled-link' : ''} to={item.routePath}>{item.menuLabel}</Link>
+                                {/* <ListItemText primary={item.menuLabel} /> */}
                             </ListItemButton>
                         </ListItem>
                     ))}
                 </List>
                 <Divider />
                 <List>
-                    {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                        <ListItem key={text} disablePadding>
+                    {menuOptions2.map((item, index) => (
+                        <ListItem key={item.menuLabel} disablePadding className={item.disabled ? 'disabled-link-li' : ''}>
                             <ListItemButton>
                                 <ListItemIcon>
                                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                                 </ListItemIcon>
-                                <ListItemText primary={text} />
+                                <Link className={item.disabled ? 'disabled-link' : ''} to={item.routePath}>{item.menuLabel}</Link>
+                                {/* <ListItemText primary={item.menuLabel} /> */}
                             </ListItemButton>
                         </ListItem>
                     ))}
@@ -167,33 +215,9 @@ const AdminPortalHomePage = () => {
             </Drawer>
             <Main open={open}>
                 <DrawerHeader />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
+                <Outlet />
+                {/* Here we display sub routes in admin portal.
+                 Consequat mauris nunc congue nisi. */}
             </Main>
         </Box>
     );

@@ -26,8 +26,8 @@ const Protected = ({ component: Component, ...routeProps }) => {
   const { loading, isAuthenticated, user, area, accessTo } = routeProps
   const isAdmin = true;
 
-  const hasAccess = isAuthorizedToPerform( area, accessTo);
-  
+  const hasAccess = isAuthorizedToPerform(area, accessTo);
+
   if (!loading && !hasAccess) {
     return <Navigate to="/login" />;
   }
@@ -75,7 +75,12 @@ const App = () => {
                     area={"adminPortal"}
                     accessTo={"hasAccessToAdminPortal"}
                   />}
-              />
+              >
+                <Route path="" element={<AdminPortalHomePage />} />
+                <Route path="adduser" element={<CreateSubUserForm />} />
+                {/* <Route path="starred" element={<CreateSubUserForm />} /> */}
+                <Route path="*" element={<PageNotFound404 />} />
+              </Route>
               <Route
                 exact path='/adduser'
                 element={

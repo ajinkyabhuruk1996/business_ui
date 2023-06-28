@@ -53,3 +53,10 @@ body {
 .content-wrap{
   flex:1;
 }
+
+.disabled-link{
+  pointer-events: none;
+}
+.disabled-link-li {
+  opacity: 0.4;
+}
