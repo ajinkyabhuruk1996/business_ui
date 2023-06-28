@@ -51,45 +51,47 @@ const App = () => {
       <div className="content-wrap">
         <Router>
           <Header />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/aboutus" element={<AboutUs />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/policies" element={<Policies />}></Route>
-            <Route path="/planning" element={<Planning />}></Route>
-            <Route path="/weather" element={<Weather />}></Route>
-            <Route
-              exact path='/booking'
-              element={
-                <Protected component={Booking}
-                  area={"enquiry"}
-                  accessTo={"hasAccessToBooking"}
-                />}
-            />
-            <Route
-              exact path='/adminportal'
-              element={
-                <Protected component={AdminPortalHomePage}
-                  area={"adminPortal"}
-                  accessTo={"hasAccessToAdminPortal"}
-                />}
-            />
-            <Route
-              exact path='/adduser'
-              element={
-                <Protected component={CreateSubUserForm}
-                  area={"user"}
-                  accessTo={"canAddNewUser"}
-                />}
-            />
-            <Route exact path="/productlist/solarpanel" element={<SolarPanelListing />}></Route>
-            <Route exact path="/productlist/solarheater" element={<SolarHeatersListing />}></Route>
-            <Route path="/productlist/*" element={<ProductListing />}></Route>
-            <Route path="/404" element={<PageNotFound404 />}></Route>
-            <Route path="*" element={<PageNotFound404 />}></Route>
-            {/* <Navigate to="/404" /> */}
-          </Routes>
+          <div className="sub-content-wrap">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/aboutus" element={<AboutUs />}></Route>
+              <Route path="/signup" element={<SignUp />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/policies" element={<Policies />}></Route>
+              <Route path="/planning" element={<Planning />}></Route>
+              <Route path="/weather" element={<Weather />}></Route>
+              <Route
+                exact path='/booking'
+                element={
+                  <Protected component={Booking}
+                    area={"enquiry"}
+                    accessTo={"hasAccessToBooking"}
+                  />}
+              />
+              <Route
+                exact path='/adminportal'
+                element={
+                  <Protected component={AdminPortalHomePage}
+                    area={"adminPortal"}
+                    accessTo={"hasAccessToAdminPortal"}
+                  />}
+              />
+              <Route
+                exact path='/adduser'
+                element={
+                  <Protected component={CreateSubUserForm}
+                    area={"user"}
+                    accessTo={"canAddNewUser"}
+                  />}
+              />
+              <Route exact path="/productlist/solarpanel" element={<SolarPanelListing />}></Route>
+              <Route exact path="/productlist/solarheater" element={<SolarHeatersListing />}></Route>
+              <Route path="/productlist/*" element={<ProductListing />}></Route>
+              <Route path="/404" element={<PageNotFound404 />}></Route>
+              <Route path="*" element={<PageNotFound404 />}></Route>
+              {/* <Navigate to="/404" /> */}
+            </Routes>
+          </div>
         </Router>
       </div>
       <Footer />
