@@ -22,6 +22,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useNavigate } from 'react-router-dom';
 import { isAuthorizedToPerform } from '../../../utils.js';
+import OuterDrawer from './OuterDrawer.js'
 
 const drawerWidth = 240;
 
@@ -166,53 +167,7 @@ const AdminPortalHomePage = () => {
                     </Box>
                 </Toolbar>
             </AppBar>
-            <Drawer
-                sx={{
-                    width: drawerWidth,
-                    flexShrink: 0,
-                    '& .MuiDrawer-paper': {
-                        width: drawerWidth,
-                        boxSizing: 'border-box',
-                    },
-                }}
-                variant="persistent"
-                anchor="left"
-                open={open}
-            >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
-                <List>
-                    {menuOptions1.map((item, index) => (
-                        <ListItem key={item.menuLabel} disablePadding className={item.disabled ? 'disabled-link-li' : ''}>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <Link className={item.disabled ? 'disabled-link' : ''} to={item.routePath}>{item.menuLabel}</Link>
-                                {/* <ListItemText primary={item.menuLabel} /> */}
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-                <Divider />
-                <List>
-                    {menuOptions2.map((item, index) => (
-                        <ListItem key={item.menuLabel} disablePadding className={item.disabled ? 'disabled-link-li' : ''}>
-                            <ListItemButton>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                                </ListItemIcon>
-                                <Link className={item.disabled ? 'disabled-link' : ''} to={item.routePath}>{item.menuLabel}</Link>
-                                {/* <ListItemText primary={item.menuLabel} /> */}
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
-                </List>
-            </Drawer>
+            <OuterDrawer open={open} handleDrawerOpen={handleDrawerOpen} handleDrawerClose={handleDrawerClose}/>
             <Main open={open}>
                 <DrawerHeader />
                 <Outlet />

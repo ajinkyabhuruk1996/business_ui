@@ -23,7 +23,7 @@ const AccountMenu = (props) => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
 
-    const canAddNewUser = isAuthorizedToPerform( "user", "canAddNewUser");
+    // const canAddNewUser = isAuthorizedToPerform( "user", "canAddNewUser");
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -115,7 +115,7 @@ const AccountMenu = (props) => {
                     </ListItemIcon>
                     Settings
                 </MenuItem> */}
-                {
+                {/* {
                     canAddNewUser ? (
                         <MenuItem onClick={ () => { navigate('/adduser') }}>
                             <ListItemIcon>
@@ -124,7 +124,7 @@ const AccountMenu = (props) => {
                             Add New User
                         </MenuItem>
                     ) : ''
-                }
+                } */}
 
                 <MenuItem onClick={() => { handleClose(); handleLogoutClick(); }}>
                     <ListItemIcon>
