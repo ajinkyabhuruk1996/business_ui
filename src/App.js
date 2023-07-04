@@ -17,7 +17,13 @@ import SolarPanelListing from './components/Products/ProductListing/SolarPanelLi
 import SolarHeatersListing from './components/Products/ProductListing/SolarHeatersListing.js'
 import ProductListing from './components/Products/ProductListing/ProductListing.js';
 import AdminPortalHomePage from './components/AdminPortal/AdminPortal/AdminPortalHomePage.js';
+
 import CreateSubUserForm from './components/Forms/SignUp/createSubUserForm.js';
+
+
+//product section imports
+import AddCategoryForm from './components/AdminPortal/Product/Category/AddCategoryForm.js'
+
 import { isAuthorizedToPerform } from './utils.js';
 import './App.css';
 
@@ -78,6 +84,7 @@ const App = () => {
               >
                 <Route path="" element={<AdminPortalHomePage />} />
                 <Route path="adduser" element={<CreateSubUserForm />} />
+                <Route path="addcategory" element={<AddCategoryForm />} />
                 {/* <Route path="starred" element={<CreateSubUserForm />} /> */}
                 <Route path="*" element={<PageNotFound404 />} />
               </Route>
@@ -87,6 +94,14 @@ const App = () => {
                   <Protected component={CreateSubUserForm}
                     area={"user"}
                     accessTo={"canAddNewUser"}
+                  />}
+              />
+              <Route
+                exact path='/addcategory'
+                element={
+                  <Protected component={AddCategoryForm}
+                    area={"product"}
+                    accessTo={"canAddCategory"}
                   />}
               />
               <Route exact path="/productlist/solarpanel" element={<SolarPanelListing />}></Route>

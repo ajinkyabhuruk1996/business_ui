@@ -44,6 +44,9 @@ const DrawerComponent = (props) => {
 
     const { open, handleDrawerClose } = props;
     const canAddNewUser = isAuthorizedToPerform("user", "canAddNewUser");
+    const canAddCategory = isAuthorizedToPerform("product", "canAddCategory");
+
+    
 
     const menuOptions2 = [
         // { menuLabel: 'Another Demo', routePath: 'demomenu2' }
@@ -81,20 +84,18 @@ const DrawerComponent = (props) => {
                 menuKey: 'addusermenukey',
                 routePath: 'adduser',
                 disabled: !canAddNewUser
-            },
-            {
-                menuLabel: 'User Search',
-                menuKey: 'usersearchmenukey'
             }
+            // {
+            //     menuLabel: 'User Search',
+            //     menuKey: 'usersearchmenukey'
+            // }
         ],
         productcategorymenukey: [
             {
                 menuLabel: 'Add Category',
                 menuKey: 'addcategorymenukey',
-            },
-            {
-                menuLabel: 'Category Search',
-                menuKey: 'categorysearchmenukey'
+                routePath: 'addcategory',
+                disabled: !canAddCategory
             }
         ],
     };
