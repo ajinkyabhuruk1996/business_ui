@@ -3,12 +3,14 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import '../../../Forms/Forms.css';
 import TextInput from '../../../Forms/FormComponents/TextInput/TextInput.js';
+import Button from '@mui/material/Button';
 import CheckBox from '../../../Forms/FormComponents/Checkbox/Checkbox.js';
 import { API_ROOT } from '../../../AppConfig/app-config.js';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import LoginForm from "../../../Forms/Login/Login.js";
 import { isAuthorizedToPerform } from '../../../../utils.js';
+import UploadDialog from '../../../Forms/FormComponents/FileUpload/UploadDialog.js'
 export default class AddCategoryForm extends React.Component {
 
   constructor(props) {
@@ -16,9 +18,50 @@ export default class AddCategoryForm extends React.Component {
     this.state = {
       data: null,
       addCatSuccessFlag: false,
-      message: null
+      message: null,
+      dialogueOpen: false
     }
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    //this.handleClose = this.handleClose.bind();
+    // const [open, setOpen] = React.useState(false);
+
+    // const handleClickOpen = () => {
+    //   setOpen(true);
+    // };
+  
+    // const handleClose = () => {
+    //   setOpen(false);
+    // };
+  
   }
+
+  handleClickOpen = () => {
+    this.setState({
+      dialogueOpen :true
+    });
+  }
+
+  handleClose = () => {
+    this.setState({
+      dialogueOpen :false
+    });
+  }
+
+  // handleClickOpen(){
+  //   this.setState((state)=> {
+  //     return { dialogueOpen: true }
+  // })
+  // }
+  // handleClose(){
+  //   this.setState((state)=> {
+  //     return { dialogueOpen: true }
+  // })
+  // }
+
+      // const handleClose = () => {
+    //   setOpen(false);
+    // };
 
   render() {
     
@@ -109,10 +152,19 @@ export default class AddCategoryForm extends React.Component {
                     type="text"
                     placeholder="Category Name"
                   />
-                  <TextInput
+                  {/* <TextInput
                     name="picture"
                     type="photo"
                     placeholder="Photo Of Category"
+                  /> */}
+                  <Button variant="outlined" onClick={this.handleClickOpen}>
+                    Open form dialog
+                  </Button>
+                  <UploadDialog
+                    handleClickOpen={this.handleClickOpen}
+                    dialogueOpen={this.state.dialogueOpen}
+                    handleClose={this.handleClose}
+                    dialogueTitle="Upload Photo"
                   />
                   <TextInput
                     name="password"
