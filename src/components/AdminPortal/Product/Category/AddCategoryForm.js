@@ -184,28 +184,27 @@ export default class AddCategoryForm extends React.Component {
                     handleOkUploadPhoto={this.handleOkCategoryImage}
                     dialogueTitle="Upload Photo"
                   />
-                  {
+                  {/* {
                     this.state.categoryResizedImage ? <img
-                      // alt="Resize Image"
                       src={this.state.categoryResizedImage}
                       height={200}
                       width={200}
                     /> : ''
-                  }
+                  } */}
                   {
                     this.state.categoryOriginalImageString ? <img
-                      // alt="Resize Image"
+                      className="top-margin-small"
                       src={this.state.categoryOriginalImageString}
                       height={200}
                       width={200}
                     /> : ''
                   }
 
-                  <TextInput
+                  {/* <TextInput
                     name="password"
                     type="password"
                     placeholder="Password"
-                  />
+                  /> */}
 
                   <button className="buttonStyle" type="submit">Submit</button>
                 </Form>

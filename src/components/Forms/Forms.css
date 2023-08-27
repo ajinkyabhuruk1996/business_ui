@@ -14,6 +14,22 @@
     cursor: pointer;
 }
 
+.bottom-margin-medium {
+    margin-bottom: 2rem;
+}
+
+.top-margin-medium {
+    margin-top: 2rem;
+}
+
+.bottom-margin-small {
+    margin-bottom: 1rem;
+}
+
+.top-margin-small {
+    margin-top: 1rem;
+}
+
 .buttonStyle:hover {
     background-color:#014421 ;
 }
