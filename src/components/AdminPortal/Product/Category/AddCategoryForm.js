@@ -11,6 +11,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import LoginForm from "../../../Forms/Login/Login.js";
 import { isAuthorizedToPerform } from '../../../../utils.js';
 import UploadDialog from '../../../Forms/FormComponents/FileUpload/UploadDialog.js'
+
 export default class AddCategoryForm extends React.Component {
 
   constructor(props) {
@@ -19,33 +20,49 @@ export default class AddCategoryForm extends React.Component {
       data: null,
       addCatSuccessFlag: false,
       message: null,
-      dialogueOpen: false
+      dialogueOpen: false,
+      categoryOriginalImage: null,
+      categoryResizedImage: null,
+      categoryOriginalImageString: null,
     }
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleOkCategoryImage = this.handleOkCategoryImage.bind(this);
     //this.handleClose = this.handleClose.bind();
     // const [open, setOpen] = React.useState(false);
 
     // const handleClickOpen = () => {
     //   setOpen(true);
     // };
-  
+
     // const handleClose = () => {
     //   setOpen(false);
     // };
-  
+
   }
 
   handleClickOpen = () => {
     this.setState({
-      dialogueOpen :true
+      dialogueOpen: true
     });
   }
 
   handleClose = () => {
     this.setState({
-      dialogueOpen :false
+      dialogueOpen: false
     });
+  }
+
+  handleOkCategoryImage = (props) => {
+    const { orginalImgSrc, resizedImgSrc, imageToResizeString } = props;
+    if (orginalImgSrc && resizedImgSrc) {
+      this.setState({
+        categoryOriginalImage: orginalImgSrc,
+        categoryResizedImage: resizedImgSrc,
+        categoryOriginalImageString: imageToResizeString
+      });
+    }
+
   }
 
   // handleClickOpen(){
@@ -59,13 +76,13 @@ export default class AddCategoryForm extends React.Component {
   // })
   // }
 
-      // const handleClose = () => {
-    //   setOpen(false);
-    // };
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
 
   render() {
-    
-    const canAddCategory = isAuthorizedToPerform( "product", "canAddCategory");
+
+    const canAddCategory = isAuthorizedToPerform("product", "canAddCategory");
 
     if (this.state.message != null && this.state.addCatSuccessFlag === true) {
       return (
@@ -158,14 +175,32 @@ export default class AddCategoryForm extends React.Component {
                     placeholder="Photo Of Category"
                   /> */}
                   <Button variant="outlined" onClick={this.handleClickOpen}>
-                    Open form dialog
+                    Upload Image
                   </Button>
                   <UploadDialog
                     handleClickOpen={this.handleClickOpen}
                     dialogueOpen={this.state.dialogueOpen}
                     handleClose={this.handleClose}
+                    handleOkUploadPhoto={this.handleOkCategoryImage}
                     dialogueTitle="Upload Photo"
                   />
+                  {
+                    this.state.categoryResizedImage ? <img
+                      // alt="Resize Image"
+                      src={this.state.categoryResizedImage}
+                      height={200}
+                      width={200}
+                    /> : ''
+                  }
+                  {
+                    this.state.categoryOriginalImageString ? <img
+                      // alt="Resize Image"
+                      src={this.state.categoryOriginalImageString}
+                      height={200}
+                      width={200}
+                    /> : ''
+                  }
+
                   <TextInput
                     name="password"
                     type="password"
